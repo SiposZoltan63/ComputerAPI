@@ -28,7 +28,6 @@ namespace ComputerAPI
 
             app.UseAuthorization();
 
-
             app.MapControllers();
 
             app.Run();
