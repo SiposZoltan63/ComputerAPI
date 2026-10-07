@@ -1,9 +1,13 @@
-﻿namespace ComputerAPI.models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ComputerAPI.models
 {
     public class Osystem
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
+        [Key]
+        [MaxLength(36)]
+        public Guid Id { get; set; }
+        public string? Name { get; set; }
         public int Version { get; set; }
         public DateTime RegisterTime { get; set; }
         public DateTime UpdateTime { get; set; }
