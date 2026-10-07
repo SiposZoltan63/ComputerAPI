@@ -1,38 +1,42 @@
-﻿using ComputerAPI.models;
-using ComputerAPI.models.DTO;
+﻿using CmpShopApi.Models;
+using CmpShopApi.Models.DTOs;
+using ComputerAPI.models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Mysqlx.Crud;
 
-namespace ComputerAPI.Controllers
+namespace CmpShopApi.Controllers
 {
     [Route("osystem")]
     [ApiController]
     public class OsystemController : ControllerBase
     {
         public CmpShopDbContext context = new CmpShopDbContext();
+
         [HttpGet("getAll")]
         public object GetAllOsystem()
         {
             var osystems = context.Osystems.ToList();
-            return new { message = "Sikeres lekérdzés", results = "" };
+            return new { message = "Sikeres lekérdezés", result = osystems };
         }
 
         [HttpPost]
-        public object AddNewOsystem(AddNewOsystemDTO addNewOsystemDTO)
+        public object AddNewOsystem(AddNewOsystemDto addNewOsystemDto)
         {
             var osystem = new Osystem
             {
                 Id = Guid.NewGuid(),
-                Name = addNewOsystemDTO.Name,
-                Version = addNewOsystemDTO.Version,
+                Name = addNewOsystemDto.Name,
+                Version = addNewOsystemDto.Version,
                 RegisterTime = DateTime.Now,
-                UpdateTime = DateTime.Now,
+                UpdateTime = DateTime.Now
             };
+
             context.Osystems.Add(osystem);
             context.SaveChanges();
+
             return StatusCode(201, new { message = "Sikeres felvétel", result = osystem });
         }
+
         [HttpPut]
         public object UpdateOsystem([FromQuery] Guid id, [FromBody] UpdateOsystemDto updateOsystemDto)
         {
@@ -52,6 +56,7 @@ namespace ComputerAPI.Controllers
 
             return StatusCode(404, new { message = "Sikertlen frissítés", result = osystem });
         }
+
         [HttpDelete]
         public object DeleteOsystem([FromQuery] Guid id)
         {

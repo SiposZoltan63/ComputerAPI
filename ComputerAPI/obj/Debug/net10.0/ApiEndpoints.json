@@ -1,6 +1,6 @@
 [
   {
-    "ContainingType": "ComputerAPI.Controllers.OsystemController",
+    "ContainingType": "CmpShopApi.Controllers.OsystemController",
     "Method": "AddNewOsystem",
     "RelativePath": "osystem",
     "HttpMethod": "POST",
@@ -8,15 +8,15 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "addNewOsystemDTO",
-        "Type": "ComputerAPI.models.AddNewOsystemDTO",
+        "Name": "addNewOsystemDto",
+        "Type": "CmpShopApi.Models.DTOs.AddNewOsystemDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ComputerAPI.Controllers.OsystemController",
+    "ContainingType": "CmpShopApi.Controllers.OsystemController",
     "Method": "UpdateOsystem",
     "RelativePath": "osystem",
     "HttpMethod": "PUT",
@@ -30,14 +30,14 @@
       },
       {
         "Name": "updateOsystemDto",
-        "Type": "ComputerAPI.models.DTO.UpdateOsystemDto",
+        "Type": "CmpShopApi.Models.DTOs.UpdateOsystemDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ComputerAPI.Controllers.OsystemController",
+    "ContainingType": "CmpShopApi.Controllers.OsystemController",
     "Method": "DeleteOsystem",
     "RelativePath": "osystem",
     "HttpMethod": "DELETE",
@@ -53,7 +53,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ComputerAPI.Controllers.OsystemController",
+    "ContainingType": "CmpShopApi.Controllers.OsystemController",
     "Method": "GetAllOsystem",
     "RelativePath": "osystem/getAll",
     "HttpMethod": "GET",
