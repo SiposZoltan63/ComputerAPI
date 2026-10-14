@@ -3,6 +3,7 @@ using CmpShopApi.Models.DTOs;
 using ComputerAPI.models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CmpShopApi.Controllers
 {
@@ -71,6 +72,26 @@ namespace CmpShopApi.Controllers
             }
 
             return StatusCode(404, new { message = "Sikertlen törlés" });
+        }
+        [HttpGet("allOsytemAndComputers")]
+        public object AllOsystemAndComputers()
+        {
+            var computers = context.Osystems.Include(o => o.computers).ToList();
+            if (computers.Count > 0)
+            {
+                return StatusCode(200,new { message = "Sikeres lekérdezés",result= computers});
+            }
+            return StatusCode(404, new { message = "Üres adatbázis", result = computers });
+        }
+        [HttpGet("oneOsytemAndComputers")]
+        public object OneOsystemAndComputers([FromQuery]Guid id)
+        {
+            var computers = context.Osystems.Where(o => o.Id == id).Join(context.Computers, o => o.Id,c => c.OsysId, (o,c) => new { o.Name,c});
+            if (computers != null)
+            {
+                return StatusCode(200, new { message = "Sikeres lekérdezés", result = computers });
+            }
+            return StatusCode(404, new { message = "Üres adatbázis", result = computers });
         }
     }
 }

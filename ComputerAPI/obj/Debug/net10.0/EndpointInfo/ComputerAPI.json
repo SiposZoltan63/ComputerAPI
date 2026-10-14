@@ -107,6 +107,18 @@
         }
       }
     },
+    "/computer/allComputersAndOsystem": {
+      "get": {
+        "tags": [
+          "Computer"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/osystem/getAll": {
       "get": {
         "tags": [
@@ -201,6 +213,18 @@
               "format": "uuid"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/osystem/allOsytemAndComputers": {
+      "get": {
+        "tags": [
+          "Osystem"
         ],
         "responses": {
           "200": {

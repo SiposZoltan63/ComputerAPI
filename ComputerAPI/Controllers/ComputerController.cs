@@ -75,5 +75,16 @@ namespace ComputerAPI.Controllers
 
             return StatusCode(404, new { message = "Sikertlen törlés" });
         }
+        [HttpGet("allComputersAndOsystem")]
+        public object AllOsystemAndComputers()
+        {
+            var computers = context.Osystems.Include(o => o.computers).Select(o => new { o.Name,o.Version,o.computers});
+            var cmp = context.Osystems.Join(context.Computers,o => o.Id,c => c.OsysId, (o,c) => new {o.Name,o.Version,c.Brand,c.Type});
+            if (cmp != null)
+            {
+                return StatusCode(200, new { message = "Sikeres lekérdezés", result = cmp });
+            }
+            return StatusCode(404, new { message = "Üres adatbázis", result = cmp });
+        }
     }
 }
