@@ -196,6 +196,18 @@
         }
       }
     },
+    "/computer/ComputersbyOPName": {
+      "get": {
+        "tags": [
+          "Computer"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/computer/AllBrandComputers": {
       "get": {
         "tags": [
@@ -345,6 +357,30 @@
       }
     },
     "/osystem/OsystemsWithComputers": {
+      "get": {
+        "tags": [
+          "Osystem"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/osystem/Osystemsstat": {
+      "get": {
+        "tags": [
+          "Osystem"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/osystem/Osystemwithnonecomp": {
       "get": {
         "tags": [
           "Osystem"

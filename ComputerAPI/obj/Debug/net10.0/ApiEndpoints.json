@@ -84,6 +84,16 @@
   },
   {
     "ContainingType": "ComputerAPI.Controllers.ComputerController",
+    "Method": "ComputersbyOPName",
+    "RelativePath": "computer/ComputersbyOPName",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ComputerAPI.Controllers.ComputerController",
     "Method": "GetAllComputer",
     "RelativePath": "computer/getAll",
     "HttpMethod": "GET",
@@ -231,8 +241,28 @@
   },
   {
     "ContainingType": "CmpShopApi.Controllers.OsystemController",
+    "Method": "Osystemsstat",
+    "RelativePath": "osystem/Osystemsstat",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CmpShopApi.Controllers.OsystemController",
     "Method": "OsystemsWithComputers",
     "RelativePath": "osystem/OsystemsWithComputers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CmpShopApi.Controllers.OsystemController",
+    "Method": "Osystemwithnonecomp",
+    "RelativePath": "osystem/Osystemwithnonecomp",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

@@ -5,6 +5,7 @@ using ComputerAPI.models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 
 namespace CmpShopApi.Controllers
 {
@@ -105,7 +106,26 @@ namespace CmpShopApi.Controllers
             return StatusCode(404, new { message = "Üres adatbázis", result = osystems });
         }
         //9. Op-rendszerenkénti statisztika(os-stats)
-
+        [HttpGet("Osystemsstat")]
+        public object Osystemsstat()
+        {
+            var osystems = context.Osystems.Join(context.Computers, o => o.Id, c => c.OsysId, (o, c) => new {Name = o.Name, Ver = o.Version,c.Memory});
+            if (osystems != null)
+            {
+                return StatusCode(200, new { message = "Sikeres lekérdezés", result = osystems });
+            }
+            return StatusCode(404, new { message = "Üres adatbázis", result = osystems });
+        }
         //11. Gép nélküli op - rendszerek
+        [HttpGet("Osystemwithnonecomp")]
+        public object Osystemwithnonecomp()
+        {
+            var osystems = context.Osystems.Join(context.Computers, o => o.Id, c => c.OsysId, (o, c) => new { Name = o.Name, Ver = o.Version,c.Brand});
+            if (osystems != null)
+            {
+                return StatusCode(200, new { message = "Sikeres lekérdezés", result = osystems });
+            }
+            return StatusCode(404, new { message = "Üres adatbázis", result = osystems });
+        }
     }
 }

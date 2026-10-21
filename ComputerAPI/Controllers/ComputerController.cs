@@ -139,6 +139,16 @@ namespace ComputerAPI.Controllers
         }
 
         //10. Gépek op-rendszer neve szerint(by-os)
+        [HttpGet("ComputersbyOPName")]
+        public object ComputersbyOPName()
+        {
+            var computers = context.Computers.Join(context.Osystems, c => c.OsysId, o => o.Id, (c, o) => new { o.Name,c.Brand, c.Type}).OrderBy(o=> o.Name);
+            if (computers != null)
+            {
+                return StatusCode(200, new { message = "Sikeres lekérdezés", result = computers });
+            }
+            return StatusCode(404, new { message = "Üres adatbázis", result = computers });
+        }
 
         //12. Legnagyobb memóriájú gép op-rendszerenként
 
