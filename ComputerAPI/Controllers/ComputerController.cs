@@ -178,7 +178,17 @@ namespace ComputerAPI.Controllers
             return StatusCode(404, new { message = "Üres adatbázis", result = result });
         }
         //14. Legutóbb felvett gépek(latest)
-
+        [HttpGet("NewComp")]
+        public object NewComp()
+        {
+            var computers = context.Computers.Join(context.Osystems, c => c.OsysId, o => o.Id, (c, o) => new { c.Brand,c.Type,c.CreatedTime});
+            //var result = computers.Where(c => c.CreatedTime);
+            if (computers != null)
+            {
+                return StatusCode(200, new { message = "Sikeres lekérdezés", result = computers });
+            }
+            return StatusCode(404, new { message = "Üres adatbázis", result = computers });
+        }
         //15. Márkánkénti összesítés(brand-summary)
         [HttpGet("AllBrandComputers")]
         public object AllBrandComputer()
