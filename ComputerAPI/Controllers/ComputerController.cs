@@ -107,8 +107,8 @@ namespace ComputerAPI.Controllers
         [HttpGet("OneBrandComputerawithOsystems")]
         public object OneBrandComputerawithOsystems(string Brand)
         {
-            var computers = context.Computers.Join(context.Osystems, c => c.OsysId, o => o.Id, (c, o) => new { c.Brand,o.Name});
-            var result = computers.FirstOrDefault(c => c.Brand == Brand);
+            var computers = context.Computers.Join(context.Osystems, c => c.OsysId, o => o.Id, (c, o) => new { c.Brand,c.Type,o.Name});
+            var result = computers.Where(c => c.Brand == Brand);
             if (result != null)
             {
                 return StatusCode(200, new { message = "Sikeres lekérdezés", result = result });
