@@ -141,6 +141,30 @@
         }
       }
     },
+    "/computer/OneBrandComputerawithOsystems": {
+      "get": {
+        "tags": [
+          "Computer"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/computer/AllBrandComputerawithOsystems": {
+      "get": {
+        "tags": [
+          "Computer"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/osystem/getAll": {
       "get": {
         "tags": [
