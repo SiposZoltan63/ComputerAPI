@@ -119,7 +119,7 @@ namespace ComputerAPI.Controllers
         [HttpGet("AllBrandComputerawithOsystems")]
         public object AllBrandComputerawithOsystems()
         {
-            var computers = context.Computers.Join(context.Osystems, c => c.OsysId, o => o.Id, (c, o) => new { c.Brand,o.Name});
+            var computers = context.Computers.Join(context.Osystems, c => c.OsysId, o => o.Id, (c, o) => new { c.Brand,c.Type,o.Name}).OrderBy(o => o.Brand).OrderBy(o=> o.Type);
             if (computers != null)
             {
                 return StatusCode(200, new { message = "Sikeres lekérdezés", result = computers });
