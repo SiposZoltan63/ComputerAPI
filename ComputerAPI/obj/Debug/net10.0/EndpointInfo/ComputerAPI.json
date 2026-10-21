@@ -119,6 +119,28 @@
         }
       }
     },
+    "/computer/OneComputerOneOsystem": {
+      "get": {
+        "tags": [
+          "Computer"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/osystem/getAll": {
       "get": {
         "tags": [
@@ -222,6 +244,40 @@
       }
     },
     "/osystem/allOsytemAndComputers": {
+      "get": {
+        "tags": [
+          "Osystem"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/osystem/oneOsytemAndComputers": {
+      "get": {
+        "tags": [
+          "Osystem"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/osystem/OsystemsWithComputers": {
       "get": {
         "tags": [
           "Osystem"

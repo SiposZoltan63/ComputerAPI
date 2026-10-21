@@ -1,5 +1,6 @@
 ﻿using CmpShopApi.Models;
 using CmpShopApi.Models.DTOs;
+using ComputerAPI.Migrations;
 using ComputerAPI.models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -92,6 +93,16 @@ namespace CmpShopApi.Controllers
                 return StatusCode(200, new { message = "Sikeres lekérdezés", result = computers });
             }
             return StatusCode(404, new { message = "Üres adatbázis", result = computers });
+        }
+        [HttpGet("OsystemsWithComputers")]
+        public object OsystemsWithComputers()
+        {
+            var osystems = context.Osystems.GroupJoin(context.Computers,o => o.Id,c=> c.OsysId,(o,c)=> new {Name = o.Name,Ver = o.Version, Count = c.Count()}).OrderBy(o=>o.Name).ThenBy(c => c.Ver);
+            if (osystems != null)
+            {
+                return StatusCode(200, new { message = "Sikeres lekérdezés", result = osystems });
+            }
+            return StatusCode(404, new { message = "Üres adatbázis", result = osystems });
         }
     }
 }

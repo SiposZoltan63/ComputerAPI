@@ -86,5 +86,16 @@ namespace ComputerAPI.Controllers
             }
             return StatusCode(404, new { message = "Üres adatbázis", result = cmp });
         }
+        [HttpGet("OneComputerOneOsystem")]
+        public object OneComputerOneOsystem([FromQuery]Guid id)
+        {
+            var computers = context.Computers.Join(context.Osystems,c => c.OsysId,o => o.Id,(c,o) => new { c.Id, c.Brand,c.Type,o.Name,o.Version});
+            var result = computers.FirstOrDefault(c => c.Id == id);
+            if (result != null)
+            {
+                return StatusCode(200, new { message = "Sikeres lekérdezés", result = result });
+            }
+            return StatusCode(404, new { message = "Üres adatbázis", result = result });
+        }
     }
 }
