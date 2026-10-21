@@ -5,6 +5,7 @@ using ComputerAPI.models.DTOs;
 using Microsoft.AspNetCore.Components.RenderTree;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MySqlX.XDevAPI.Common;
 using System.Drawing;
 using System.Globalization;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -151,9 +152,31 @@ namespace ComputerAPI.Controllers
         }
 
         //12. Legnagyobb memóriájú gép op-rendszerenként
+        [HttpGet("MaxMemoriesComp")]
+        public object MaxMemoriesComp()
+        {
+            var computers = context.Computers.Join(context.Osystems, c => c.OsysId, o => o.Id, (c, o) => new { o.Name, c.Brand, c.Type,c.Memory }).OrderBy(o => o.Name);
+            if (computers != null)
+            {
+                return StatusCode(200, new { message = "Sikeres lekérdezés", result = computers });
+            }
+            return StatusCode(404, new { message = "Üres adatbázis", result = computers });
+        }
 
         //13. Memória és OS - verzió szerinti szűrők
-
+        [HttpGet("BymemoryandByVerzios")]
+        public object BymemoryandByVerzios(int memory,string OS,double OSverzios)
+        {
+            var computers = context.Computers.Join(context.Osystems, c => c.OsysId, o => o.Id, (c, o) => new { o.Name,o.Version, c.Brand, c.Type, c.Memory });
+            var result0 = computers.Where(c => c.Memory == memory);
+            var result1 = result0.Where(o => o.Name == OS);
+            var result = result1.Where(o => o.Version == OSverzios);
+            if (result != null)
+            {
+                return StatusCode(200, new { message = "Sikeres lekérdezés", result = result });
+            }
+            return StatusCode(404, new { message = "Üres adatbázis", result = result });
+        }
         //14. Legutóbb felvett gépek(latest)
 
         //15. Márkánkénti összesítés(brand-summary)

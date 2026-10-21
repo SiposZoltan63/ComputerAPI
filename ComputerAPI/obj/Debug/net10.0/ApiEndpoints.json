@@ -84,6 +84,32 @@
   },
   {
     "ContainingType": "ComputerAPI.Controllers.ComputerController",
+    "Method": "BymemoryandByVerzios",
+    "RelativePath": "computer/BymemoryandByVerzios",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "memory",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "OS",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OSverzios",
+        "Type": "System.Double",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ComputerAPI.Controllers.ComputerController",
     "Method": "ComputersbyOPName",
     "RelativePath": "computer/ComputersbyOPName",
     "HttpMethod": "GET",
@@ -116,6 +142,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ComputerAPI.Controllers.ComputerController",
+    "Method": "MaxMemoriesComp",
+    "RelativePath": "computer/MaxMemoriesComp",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
