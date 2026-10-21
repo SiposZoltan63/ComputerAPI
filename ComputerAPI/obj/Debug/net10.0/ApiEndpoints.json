@@ -64,6 +64,16 @@
   },
   {
     "ContainingType": "ComputerAPI.Controllers.ComputerController",
+    "Method": "AllBrandComputer",
+    "RelativePath": "computer/AllBrandComputers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ComputerAPI.Controllers.ComputerController",
     "Method": "AllOsystemAndComputers",
     "RelativePath": "computer/allComputersAndOsystem",
     "HttpMethod": "GET",
@@ -89,7 +99,13 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "Brand",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {

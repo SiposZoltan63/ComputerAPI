@@ -104,5 +104,8 @@ namespace CmpShopApi.Controllers
             }
             return StatusCode(404, new { message = "Üres adatbázis", result = osystems });
         }
+        //9. Op-rendszerenkénti statisztika(os-stats)
+
+        //11. Gép nélküli op - rendszerek
     }
 }

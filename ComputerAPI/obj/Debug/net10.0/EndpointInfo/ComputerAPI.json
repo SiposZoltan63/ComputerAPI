@@ -146,6 +146,15 @@
         "tags": [
           "Computer"
         ],
+        "parameters": [
+          {
+            "name": "Brand",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -154,6 +163,18 @@
       }
     },
     "/computer/AllBrandComputerawithOsystems": {
+      "get": {
+        "tags": [
+          "Computer"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/computer/AllBrandComputers": {
       "get": {
         "tags": [
           "Computer"

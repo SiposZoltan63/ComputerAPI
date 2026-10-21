@@ -2,8 +2,10 @@
 using ComputerAPI.Migrations;
 using ComputerAPI.models;
 using ComputerAPI.models.DTOs;
+using Microsoft.AspNetCore.Components.RenderTree;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 using System.Globalization;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using static Org.BouncyCastle.Asn1.Cmp.Challenge;
@@ -103,7 +105,19 @@ namespace ComputerAPI.Controllers
         }
         //6. Adott márkájú gépek op-rendszerrel(GET api/query/brand/{ brand})
         [HttpGet("OneBrandComputerawithOsystems")]
-        public object OneBrandComputerawithOsystems()
+        public object OneBrandComputerawithOsystems(string Brand)
+        {
+            var computers = context.Computers.Join(context.Osystems, c => c.OsysId, o => o.Id, (c, o) => new { c.Brand,o.Name});
+            var result = computers.FirstOrDefault(c => c.Brand == Brand);
+            if (result != null)
+            {
+                return StatusCode(200, new { message = "Sikeres lekérdezés", result = result });
+            }
+            return StatusCode(404, new { message = "Üres adatbázis", result = result });
+        }
+        //7. Minden gép op - rendszerrel, márka majd típus szerint rendezve(GET api/query/computers-sorted)
+        [HttpGet("AllBrandComputerawithOsystems")]
+        public object AllBrandComputerawithOsystems()
         {
             var computers = context.Computers.Join(context.Osystems, c => c.OsysId, o => o.Id, (c, o) => new { c.Brand,o.Name});
             if (computers != null)
@@ -112,11 +126,21 @@ namespace ComputerAPI.Controllers
             }
             return StatusCode(404, new { message = "Üres adatbázis", result = computers });
         }
-        //7. Minden gép op - rendszerrel, márka majd típus szerint rendezve(GET api/query/computers-sorted)
-        [HttpGet("AllBrandComputerawithOsystems")]
-        public object AllBrandComputerawithOsystems()
+        //8. Adott képernyőméretnél nagyobb gépek op-rendszerrel(GET api/query/min-display/{ size})
+
+        //10. Gépek op-rendszer neve szerint(by-os)
+
+        //12. Legnagyobb memóriájú gép op-rendszerenként
+
+        //13. Memória és OS - verzió szerinti szűrők
+
+        //14. Legutóbb felvett gépek(latest)
+
+        //15. Márkánkénti összesítés(brand-summary)
+        [HttpGet("AllBrandComputers")]
+        public object AllBrandComputer()
         {
-            var computers = context.Computers.Join(context.Osystems, c => c.OsysId, o => o.Id, (c, o) => new { c.Brand,o.Name});
+            var computers = context.Computers.Select(o=> o.Brand);
             if (computers != null)
             {
                 return StatusCode(200, new { message = "Sikeres lekérdezés", result = computers });
