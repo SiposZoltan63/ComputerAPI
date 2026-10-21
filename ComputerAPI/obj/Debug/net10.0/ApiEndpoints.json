@@ -94,6 +94,22 @@
   },
   {
     "ContainingType": "ComputerAPI.Controllers.ComputerController",
+    "Method": "GivedDisplayComputerswithOP",
+    "RelativePath": "computer/GivedDisplayComputerswithOP",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "display",
+        "Type": "System.Double",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ComputerAPI.Controllers.ComputerController",
     "Method": "OneBrandComputerawithOsystems",
     "RelativePath": "computer/OneBrandComputerawithOsystems",
     "HttpMethod": "GET",

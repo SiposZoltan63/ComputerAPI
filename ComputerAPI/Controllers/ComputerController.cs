@@ -127,6 +127,16 @@ namespace ComputerAPI.Controllers
             return StatusCode(404, new { message = "Üres adatbázis", result = computers });
         }
         //8. Adott képernyőméretnél nagyobb gépek op-rendszerrel(GET api/query/min-display/{ size})
+        [HttpGet("GivedDisplayComputerswithOP")]
+        public object GivedDisplayComputerswithOP(double display)
+        {
+            var computers = context.Computers.Join(context.Osystems, c => c.OsysId, o => o.Id, (c, o) => new { c.Brand, c.Type, c.Display,o.Name}).Where(c => c.Display > display);
+            if (computers != null)
+            {
+                return StatusCode(200, new { message = "Sikeres lekérdezés", result = computers });
+            }
+            return StatusCode(404, new { message = "Üres adatbázis", result = computers });
+        }
 
         //10. Gépek op-rendszer neve szerint(by-os)
 
